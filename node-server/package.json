@@ -1,0 +1,24 @@
+{
+  "name": "grpc-hybrid-chat-node-server",
+  "version": "1.0.0",
+  "description": "Microsserviço gRPC (Node.js) do laboratório grpc-hybrid-chat — UserService (Unary) e ChatService (Server Streaming + Bidirecional).",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "demo": "node test-client.js"
+  },
+  "keywords": [
+    "grpc",
+    "protobuf",
+    "streaming",
+    "node",
+    "chat"
+  ],
+  "author": "Marcelo Panho",
+  "license": "MIT",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.10.0",
+    "@grpc/proto-loader": "^0.7.10"
+  }
+}

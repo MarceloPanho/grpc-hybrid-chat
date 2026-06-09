@@ -1,0 +1,42 @@
+// chat.proto — Contrato gRPC compartilhado entre o servidor Node.js e o cliente Laravel.
+syntax = "proto3";
+
+package chat;
+
+// Requisição de login (padrão Unary).
+message LoginRequest {
+  string username = 1;
+}
+
+// Resposta do login.
+message LoginResponse {
+  string user_id = 1;
+  string username = 2;
+  string token = 3;
+}
+
+// Mensagem de chat — usada no histórico e no streaming.
+message ChatMessage {
+  string user_id = 1;
+  string username = 2;
+  string content = 3;
+  int64 timestamp = 4;
+}
+
+// Mensagem vazia — entrada de RPCs que não precisam de parâmetros.
+message Empty {}
+
+// Serviço de autenticação.
+service UserService {
+  // Unary: uma requisição, uma resposta.
+  rpc Login (LoginRequest) returns (LoginResponse);
+}
+
+// Serviço de chat e histórico.
+service ChatService {
+  // Server Streaming: uma requisição, várias respostas em sequência.
+  rpc GetHistory (Empty) returns (stream ChatMessage);
+
+  // Bidirecional: ambos os lados enviam e recebem em streams simultâneos.
+  rpc Chat (stream ChatMessage) returns (stream ChatMessage);
+}

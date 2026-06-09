@@ -1,0 +1,32 @@
+# ============================================================================
+#  .gitignore — grpc-hybrid-chat
+# ============================================================================
+
+# --- Node.js ---
+node-server/node_modules/
+node-server/npm-debug.log*
+node-server/package-lock.json
+
+# --- Laravel / PHP ---
+laravel-client/vendor/
+laravel-client/.env
+laravel-client/storage/*.key
+laravel-client/storage/framework/cache/*
+laravel-client/storage/framework/sessions/*
+laravel-client/storage/framework/views/*
+laravel-client/storage/logs/*
+laravel-client/bootstrap/cache/*
+
+# Classes geradas pelo protoc no build do Docker (não versionar).
+laravel-client/Generated/
+
+# --- Ambiente ---
+.env
+*.local
+
+# --- Editores / SO ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
