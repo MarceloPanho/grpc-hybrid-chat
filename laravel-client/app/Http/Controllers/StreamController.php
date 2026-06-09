@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
  *   - Cada evento é texto no formato:  "data: {json}\n\n"
  *   - É preciso esvaziar o buffer a cada envio com ob_flush() + flush(),
  *     senão o PHP/Nginx acumulam a saída e nada chega em tempo real.
- *   - O Nginx já está configurado para NÃO bufferizar /stream (Passo 8).
+ *   - O Nginx já está configurado para NÃO bufferizar /stream.
  */
 class StreamController extends Controller
 {

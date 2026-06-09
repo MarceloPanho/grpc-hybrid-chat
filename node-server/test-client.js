@@ -194,15 +194,15 @@ async function main() {
   console.log(`${cores.cinza}=== Demo gRPC: Unary → Server Streaming → Bidirecional ===${cores.reset}`);
 
   try {
-    // Passo 1: Testar Unary
+    // Login: chamada Unary (uma requisição, uma resposta).
     console.log(`\n${cores.cinza}--- [1/3] Testando Login (Unary) ---${cores.reset}`);
     await testarUnary();
 
-    // Passo 2: Testar Server Streaming
+    // Histórico: Server Streaming (o servidor envia várias mensagens em sequência).
     console.log(`\n${cores.cinza}--- [2/3] Testando Histórico (Server Streaming) ---${cores.reset}`);
     await testarServerStreaming();
 
-    // Passo 3: Testar Bidirecional
+    // Chat: streaming bidirecional (cliente e servidor trocam mensagens ao vivo).
     console.log(`\n${cores.cinza}--- [3/3] Testando Chat (Bidirecional) ---${cores.reset}`);
     await demonstrar();
 
