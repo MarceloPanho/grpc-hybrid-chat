@@ -52,7 +52,6 @@ const streamsAtivos = new Set();
 
 // Log com horário e tag do padrão gRPC. Faz a janela de logs do servidor
 // "reagir" a cada ação durante a demo pelo browser
-// (ver docs/ROTEIRO_APRESENTACAO.md → janela C).
 function log(padrao, mensagem) {
   const hora = new Date().toLocaleTimeString('pt-BR');
   console.log(`[${hora}] [${padrao}] ${mensagem}`);
