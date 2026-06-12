@@ -48,11 +48,24 @@ class StreamController extends Controller
                 }
                 $jaEnviadas = count($mensagens);
 
+                // Heartbeat: comentário SSE (linha iniciada por ":") que o browser
+                // ignora, mas que GARANTE uma escrita real no socket a cada ciclo.
+                // Sem isso, quando o chat está parado nada é enviado, o PHP nunca
+                // tenta escrever e connection_aborted() jamais detecta que o cliente
+                // saiu — o loop viraria zumbi chamando getHistory() para sempre.
+                echo ": ping\n\n";
+
                 // Esvazia os buffers para o evento chegar imediatamente.
                 if (ob_get_level() > 0) {
                     ob_flush();
                 }
                 flush();
+
+                // Após o flush o PHP já tentou escrever no socket: se o cliente
+                // desconectou (ex.: clicou em "sair"), agora detectamos e saímos.
+                if (connection_aborted()) {
+                    break;
+                }
 
                 sleep(1); // intervalo de polling
             }
